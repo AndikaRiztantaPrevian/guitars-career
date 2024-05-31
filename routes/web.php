@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\JobVacancy;
 use App\Http\Controllers\ProfileController;
@@ -9,7 +11,11 @@ use Illuminate\Support\Facades\Route;
 
 // Auth Route
 Auth::routes();
-Route::get('berlangganan', [CustomerController::class, 'index'])->name('pricing');
+// OAuth
+Route::get('/auth/redirect', [SocialiteController::class, 'redirect'])->name('oauth.redirect');
+Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
+
+Route::get('/berlangganan', [CustomerController::class, 'index'])->name('pricing');
 
 // Guest Route
 Route::middleware('guest')->group(function () {
@@ -19,8 +25,8 @@ Route::middleware('guest')->group(function () {
 });
 
 // User Route
-Route::middleware('auth')->group(function () {
-    Route::get('/beranda', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/beranda', [HomeController::class, 'index'])->name('home');
     Route::get('/cari-kerja', [JobsController::class, 'index'])->name('kerja');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/buat-lowongan', [JobVacancy::class, 'index'])->name('buat-lowongan');
