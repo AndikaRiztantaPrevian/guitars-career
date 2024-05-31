@@ -130,8 +130,8 @@
                     @endauth
                     @guest
                         <div class="block-signin">
-                            <a class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a>
-                            <a class='btn btn-default btn-shadow ml-40 hover-up' href='{{ route('login') }}'>Masuk</a>
+                            <a wire:navigate class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a>
+                            <a wire:navigate class='btn btn-default btn-shadow ml-40 hover-up' href='{{ route('login') }}'>Masuk</a>
                         </div>
                     @endguest
                 </div>
