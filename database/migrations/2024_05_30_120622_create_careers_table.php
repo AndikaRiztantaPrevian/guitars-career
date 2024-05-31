@@ -19,7 +19,39 @@ return new class extends Migration
             $table->integer('salary');
             $table->text('description');
             $table->enum('employment_type', ['fulltime', 'parttime']);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->char('province_code', 2)->nullable();
+            $table->char('city_code', 4)->nullable();
+            $table->char('district_code', 7)->nullable();
+            $table->char('village_code', 10)->nullable();
+
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreign('province_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'provinces')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('city_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'cities')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('district_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'districts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('village_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'villages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
