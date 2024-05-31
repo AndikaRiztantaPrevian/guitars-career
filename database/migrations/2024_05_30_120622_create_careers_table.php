@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('address');
+            $table->integer('salary');
+            $table->text('description');
+            $table->enum('employment_type', ['fulltime', 'parttime']);
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

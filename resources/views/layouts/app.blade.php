@@ -89,16 +89,33 @@
                 <div class="header-nav">
                     <nav class="nav-main-menu">
                         <ul class="main-menu">
-                            <li><a wire:navigate
+                            <li>
+                                <a wire:navigate
                                     class='{{ request()->routeIs('beranda') | request()->routeIs('home') ? 'active' : '' }}'
-                                    href='{{ route('beranda') }}'>Beranda</a></li>
-                            <li><a wire:navigate class='{{ request()->routeIs('kerja') ? 'active' : '' }}'
-                                    href='{{ route('kerja') }}'>Cari Kerja</a></li>
+                                    href='{{ route('beranda') }}'>
+                                    Beranda
+                                </a>
+                            </li>
+                            <li>
+                                <a wire:navigate class='{{ request()->routeIs('kerja') ? 'active' : '' }}'
+                                    href='{{ route('kerja') }}'>
+                                    Cari Kerja
+                                </a>
+                            </li>
                             @auth
-                                <li><a wire:navigate class="" href="#">Buat Lowongan</a></li>
+                                <li>
+                                    <a wire:navigate class="{{ request()->routeIs('buat-lowongan' ? 'active' : '') }}"
+                                        href="{{ route('buat-lowongan') }}">
+                                        Buat Lowongan
+                                    </a>
+                                </li>
                             @endauth
-                            <li><a wire:navigate class='{{ request()->routeIs('pricing') ? 'active' : '' }}'
-                                    href='{{ route('pricing') }}'>Langganan</a></li>
+                            <li>
+                                <a wire:navigate class='{{ request()->routeIs('pricing') ? 'active' : '' }}'
+                                    href='{{ route('pricing') }}'>
+                                    Langganan
+                                </a>
+                            </li>
                         </ul>
                     </nav>
                     <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span
@@ -131,7 +148,8 @@
                     @guest
                         <div class="block-signin">
                             <a wire:navigate class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a>
-                            <a wire:navigate class='btn btn-default btn-shadow ml-40 hover-up' href='{{ route('login') }}'>Masuk</a>
+                            <a wire:navigate class='btn btn-default btn-shadow ml-40 hover-up'
+                                href='{{ route('login') }}'>Masuk</a>
                         </div>
                     @endguest
                 </div>
