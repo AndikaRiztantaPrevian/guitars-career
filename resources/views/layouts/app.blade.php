@@ -103,7 +103,7 @@
                 <ul class="main-menu">
                   <li class="has-children"><a>{{ auth()->user()->name }}</a>
                     <ul class="sub-menu">
-                      <li><a href='index.html'>Profile</a></li>
+                      <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}" href='{{ route('profile') }}'>Profile</a></li>
                       <li><a href='index-2.html'>Lamaran saya</a></li>
                       <li><a class="text-danger" href='{{ route('logout') }}'
                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
@@ -145,7 +145,7 @@
           <div class="mobile-account">
             <h6 class="mb-10">Akun Anda</h6>
             <ul class="mobile-menu font-heading">
-              <li><a href="#">Profile</a></li>
+              <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Profile</a></li>
               <li><a href='#'>Lamaran saya</a></li>
               <li><a class="text-danger" href='{{ route('logout') }}'
                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>

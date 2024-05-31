@@ -14,19 +14,11 @@ class GendreSeeder extends Seeder
     public function run(): void
     {
         DB::table('gendres')->insert([
-            'name' => 'Pop',
-        ]);
-        DB::table('gendres')->insert([
-            'name' => 'Jazz',
-        ]);
-        DB::table('gendres')->insert([
-            'name' => 'Classical',
-        ]);
-        DB::table('gendres')->insert([
-            'name' => 'Blues',
-        ]);
-        DB::table('gendres')->insert([
-            'name' => 'Blues',
+            ['name' => 'Pop'],
+            ['name' => 'Jazz'],
+            ['name' => 'Blues'],
+            ['name' => 'Classic'],
+            ['name' => 'Country']
         ]);
     }
 }

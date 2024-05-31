@@ -14,16 +14,10 @@ class SkillSeeder extends Seeder
     public function run(): void
     {
         DB::table('skills')->insert([
-            'name' => 'Gitar',
-        ]);
-        DB::table('skills')->insert([
-            'name' => 'Piano',
-        ]);
-        DB::table('skills')->insert([
-            'name' => 'Drum',
-        ]);
-        DB::table('skills')->insert([
-            'name' => 'Penyanyi',
+            ['name' => 'Gitar'],
+            ['name' => 'Piano'],
+            ['name' => 'Drum'],
+            ['name' => 'Penyanyi']
         ]);
     }
 }
