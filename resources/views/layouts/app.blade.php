@@ -131,7 +131,7 @@
                       <li><a wire:navigate class="{{ request()->routeIs('profile') ? 'active' : '' }}"
                           href='{{ route('profile') }}'>Profile</a></li>
                       <li><a wire:navigate href='index-2.html'>Lamaran saya</a></li>
-                      <li><a wire:navigate class="text-danger" href='{{ route('logout') }}'
+                      <li><a class="text-danger" href='{{ route('logout') }}'
                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                       </li>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
