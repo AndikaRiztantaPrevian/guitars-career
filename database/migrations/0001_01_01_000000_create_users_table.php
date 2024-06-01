@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('code_zip')->nullable();
             $table->text('address')->nullable();
             $table->enum('role', ['user', 'owner'])->nullable();
-            $table->string('google_id');
-            $table->string('google_token');
+            $table->string('google_id')->nullable();
+            $table->string('google_token')->nullable();
             $table->string('google_refresh_token')->nullable();
             $table->rememberToken();
             $table->timestamps();

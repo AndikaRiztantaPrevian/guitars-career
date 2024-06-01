@@ -14,7 +14,6 @@ Auth::routes();
 // OAuth
 Route::get('/auth/redirect', [SocialiteController::class, 'redirect'])->name('oauth.redirect');
 Route::get('/auth/google/callback', [SocialiteController::class, 'callback']);
-
 Route::get('/berlangganan', [CustomerController::class, 'index'])->name('pricing');
 
 // Guest Route
@@ -30,4 +29,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/cari-kerja', [JobsController::class, 'index'])->name('kerja');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/buat-lowongan', [JobVacancy::class, 'index'])->name('buat-lowongan');
+});
+
+//Dev route biar cepet login pake user dengan id 1
+Route::get('/admin', function () {
+    Auth::loginUsingId(1);
+    return redirect()->route('beranda');
 });

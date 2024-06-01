@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('careers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('job_name');
+            $table->string('company_name')->unique();
             $table->string('image');
             $table->string('address');
             $table->integer('salary');
             $table->text('description');
             $table->enum('employment_type', ['fulltime', 'parttime']);
+            $table->enum('status', ['active', 'deactive'])->default('active');
             $table->char('province_code', 2)->nullable();
             $table->char('city_code', 4)->nullable();
             $table->char('district_code', 7)->nullable();

@@ -104,7 +104,7 @@
               </li>
               @auth
                 <li>
-                  <a wire:navigate class="{{ request()->routeIs('buat-lowongan' ? 'active' : '') }}"
+                  <a wire:navigate class='{{ request()->routeIs('buat-lowongan') ? 'active' : '' }}'
                     href="{{ route('buat-lowongan') }}">
                     Buat Lowongan
                   </a>
@@ -153,6 +153,7 @@
       </div>
     </div>
   </header>
+
   <div class="mobile-header-active mobile-header-wrapper-style perfect-scrollbar">
     <div class="mobile-header-wrapper-inner">
       <div class="mobile-header-content-area">
