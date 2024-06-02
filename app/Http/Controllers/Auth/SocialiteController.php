@@ -11,6 +11,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class SocialiteController extends Controller
 {
+    // Login & Register With Google Account
     public function redirect()
     {
         return Socialite::driver('google')->redirect();
@@ -57,14 +58,55 @@ class SocialiteController extends Controller
         }
     }
 
+    // Step 2 Register With Google Account
+    public function indexRolePassword($id)
+    {
+        return view('auth.role-password', ['id' => $id]);
+    }
+
+    public function postRolePassword(Request $request, $id)
+    {
+        $validated = $this->validationRolePassword($request);
+
+        $this->processRolePassword($validated, $id);
+
+        return redirect()->route('kerja')->with('success', 'Berhasil memperbarui data akun anda!.');
+    }
+
+    protected function processRolePassword($validated, $id)
+    {
+        $userIdDecrypt = $this->decryptId($id);
+
+        $user = User::findOrFail($userIdDecrypt);
+        $user->role = $validated['role'];
+        $user->password = Hash::make($validated['password']);
+        $user->save();
+    }
+
+    protected function validationRolePassword(Request $request)
+    {
+        return $request->validate([
+            'role' => 'required|in:user,owner',
+            'password' => 'required|min:8|string|confirmed',
+        ], [
+            'role.required' => 'Anda harus memilih salah satu.',
+            'role.in' => 'Data yang anda masukkan tidak valid.',
+            'password.required' => 'Kata sandi harus diisi.',
+            'password.string' => 'Kata sandi harus berupa huruf.',
+            'password.min' => 'Kata sandi minimal 8 huruf.',
+            'password.confirmed' => 'Password tidak sama dengan Konfirmasi passowrd.',
+        ]);
+    }
+
+    // Step Two Register
     public function indexRole($id)
     {
         return view('auth.role', ['id' => $id]);
     }
-
+    
     public function postRole(Request $request, $id)
     {
-        $validated = $this->validation($request);
+        $validated = $this->validationRole($request);
 
         $this->processRole($validated, $id);
 
@@ -77,22 +119,16 @@ class SocialiteController extends Controller
 
         $user = User::findOrFail($userIdDecrypt);
         $user->role = $validated['role'];
-        $user->password = Hash::make($validated['password']);
         $user->save();
     }
 
-    protected function validation(Request $request)
+    protected function validationRole(Request $request)
     {
         return $request->validate([
             'role' => 'required|in:user,owner',
-            'password' => 'required|min:8|string|confirmed',
         ], [
             'role.required' => 'Anda harus memilih salah satu.',
             'role.in' => 'Data yang anda masukkan tidak valid.',
-            'password.required' => 'Kata sandi harus diisi.',
-            'password.string' => 'Kata sandi harus berupa huruf.',
-            'password.min' => 'Kata sandi minimal 8 huruf.',
-            'password.confirmed' => 'Password tidak sama dengan Konfirmasi passowrd.',
         ]);
     }
 
