@@ -288,7 +288,6 @@
   </footer>
 
   {{-- Script --}}
-  @stack('script')
   <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
   <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
   <script src="{{ asset('assets/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
@@ -303,6 +302,7 @@
   <script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/counterup.js') }}"></script>
   <script src="{{ asset('assets/js/main8c94.js?v=4.1') }}"></script>
+  @stack('script')
 </body>
 
 </html>

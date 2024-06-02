@@ -40,4 +40,12 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_CALLBACK'),
     ],
+
+    'midtrans' => [
+        'serverKey' => env('MIDTRANS_SERVERKEY'),
+        'clientKey' => env('MIDTRANS_CLIENTRKEY'),
+        'isProduction' => env('MIDTRANS_IS_PRODUCTION', false),
+        'isSanitized' => env('MIDTRANS_IS_SANITIZED', true),
+        'is3ds' => env('MIDTRANS_IS_3DS', true),
+    ],
 ];

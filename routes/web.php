@@ -24,11 +24,19 @@ Route::middleware('guest')->group(function () {
 });
 
 // User Route
-Route::middleware('auth', 'verified')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/beranda', [HomeController::class, 'index'])->name('home');
     Route::get('/cari-kerja', [JobsController::class, 'index'])->name('kerja');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/buat-lowongan', [JobVacancy::class, 'index'])->name('buat-lowongan');
+
+    // Midtrans
+    // Route::post('/midtrans/notification', [CustomerController::class, 'notification']);
+    Route::post('/transaction/basic', [CustomerController::class, 'storeBasic']);
+    Route::post('/transaction/standard', [CustomerController::class, 'storeStandard']);
+    Route::post('/transaction/enterprice', [CustomerController::class, 'storeEnterprice']);
+
+    // Step 2 Registration
     Route::get('/set-account/only/{id}', [SocialiteController::class, 'indexRole'])->name('role-only-index');
     Route::post('/set-account/only/post/{id}', [SocialiteController::class, 'postRole'])->name('role-only-post');
     Route::get('/set-account/{id}', [SocialiteController::class, 'indexRolePassword'])->name('role-index');
