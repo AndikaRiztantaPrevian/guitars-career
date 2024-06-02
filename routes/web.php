@@ -29,6 +29,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/cari-kerja', [JobsController::class, 'index'])->name('kerja');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::get('/buat-lowongan', [JobVacancy::class, 'index'])->name('buat-lowongan');
+    Route::get('/set-account/{id}', [SocialiteController::class, 'indexRole'])->name('role-index');
+    Route::post('/set-account/post/{id}', [SocialiteController::class, 'postRole'])->name('role-post');
 });
 
 //Dev route biar cepet login pake user dengan id 1

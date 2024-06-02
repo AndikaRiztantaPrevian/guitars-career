@@ -53,39 +53,40 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Nama Lengkap</label>
-                                            <input class="form-control" type="text"
-                                                value="{{ auth()->user()->name }}">
+                                            <input class="form-control" type="text" value="{{ auth()->user()->name }}">
                                         </div>
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input class="form-control" type="text"
-                                                value="{{ auth()->user()->email }}">
+                                            <input class="form-control" type="text" value="{{ auth()->user()->email }}">
                                         </div>
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Nomer Handphone</label>
-                                            <input class="form-control" type="text" value="01 - 234 567 89">
+                                            <input class="form-control" type="text" value="{{ auth()->user()->phone_number}}" placeholder="08123456789">
                                         </div>
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Bio</label>
                                             <textarea class="form-control" rows="4">We are AliThemes , a creative and dedicated group of individuals who love web development almost as much as we love our customers. We are passionate team with the mission for achieving the perfection in web design.</textarea>
                                         </div>
                                         <div class="row">
+                                            
                                             <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="font-sm color-text-mutted mb-10">Negara</label>
-                                                    <input class="form-control" type="text" value="United States">
+                                                <div class="form-group select-style select-style-icon">
+                                                    <select class="form-control form-icons select-active">
+                                                        <option value="" selected>Desa</option>
+                                                        {{-- @foreach ($villages as $data)
+                                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                                        @endforeach --}}
+                                                    </select><i class="fi-rr-marker"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="font-sm color-text-mutted mb-10">Provinsi</label>
-                                                    <input class="form-control" type="text" value="New York">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="font-sm color-text-mutted mb-10">Kota</label>
-                                                    <input class="form-control" type="text" value="Mcallen">
+                                                <div class="form-group select-style select-style-icon">
+                                                    <select class="form-control form-icons select-active">
+                                                        <option value="" selected>Desa</option>
+                                                        {{-- @foreach ($villages as $data)
+                                                            <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                                        @endforeach --}}
+                                                    </select><i class="fi-rr-marker"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -102,14 +103,14 @@
                                                 <div class="form-group">
                                                     <label class="font-sm color-text-mutted mb-10">Kata sandi
                                                         baru</label>
-                                                    <input class="form-control" type="password" value="123456789">
+                                                    <input class="form-control" type="password" placeholder="*******">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label class="font-sm color-text-mutted mb-10">Ulangi kata sandi
                                                         *</label>
-                                                    <input class="form-control" type="password" value="123456789">
+                                                    <input class="form-control" type="password" placeholder="*******">
                                                 </div>
                                             </div>
                                         </div>

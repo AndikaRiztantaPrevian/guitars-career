@@ -52,6 +52,19 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'name.required' => 'Nama lengkap harus diisi.',
+            'name.string' => 'Nama lengkap harus berupa huruf.',
+            'name.max' => 'Nama lengkap maksimal 255 huruf.',
+            'email.required' => 'Alamat Email harus diisi.',
+            'email.string' => 'Alamat Email harus berupa huruf.',
+            'email.max' => 'Alamat Email maksimal 255 huruf.',
+            'email.string' => 'Alamat Email harus berupa huruf.',
+            'email.unique' => 'Alamat Email sudah terdaftar.',
+            'password.required' => 'Kata sandi harus diisi.',
+            'password.string' => 'Kata sandi harus berupa huruf.',
+            'password.min' => 'Kata sandi minimal 8 huruf.',
+            'password.confirmed' => 'Password tidak sama dengan Konfirmasi passowrd.',
         ]);
     }
 

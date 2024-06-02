@@ -84,7 +84,7 @@
       <div class="main-header">
         <div class="header-left">
           <div class="header-logo"><a class='d-flex' href='index.html'><img alt="jobBox"
-                src="assets/imgs/template/jobhub-logo.svg"></a></div>
+                src="{{ asset('assets/imgs/template/jobhub-logo.svg') }}"></a></div>
         </div>
         <div class="header-nav">
           <nav class="nav-main-menu">
@@ -103,12 +103,15 @@
                 </a>
               </li>
               @auth
-                <li>
-                  <a wire:navigate class='{{ request()->routeIs('buat-lowongan') ? 'active' : '' }}'
-                    href="{{ route('buat-lowongan') }}">
-                    Buat Lowongan
-                  </a>
-                </li>
+                @if (Auth()->user()->role == 'owner')
+                  <li>
+                    <a wire:navigate class='{{ request()->routeIs('buat-lowongan') ? 'active' : '' }}'
+                      href="{{ route('buat-lowongan') }}">
+                      Buat Lowongan
+                    </a>
+                  </li>
+                @else
+                @endif
               @endauth
               <li>
                 <a wire:navigate class='{{ request()->routeIs('pricing') ? 'active' : '' }}'
@@ -145,7 +148,7 @@
           @endauth
           @guest
             <div class="block-signin">
-              {{-- <a wire:navigate class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a> --}}
+              <a wire:navigate class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a>
               <a wire:navigate class='btn btn-default btn-shadow ml-40 hover-up' href='{{ route('login') }}'>Masuk</a>
             </div>
           @endguest
@@ -165,7 +168,10 @@
                 <li><a wire:navigate class='active' href='{{ route('beranda') }}'>Beranda</a></li>
                 <li><a wire:navigate href='{{ route('kerja') }}'>Cari Kerja</a></li>
                 @auth
-                <li><a wire:navigate href='index.html'>Buat Lowongan</a></li>
+                  @if (Auth()->user()->role == 'owner')
+                    <li><a wire:navigate href='index.html'>Buat Lowongan</a></li>
+                  @else
+                  @endif
                 @endauth
                 <li><a wire:navigate href='index.html'>Langganan</a></li>
               </ul>
@@ -173,16 +179,19 @@
           </div>
           <div class="mobile-account">
             @auth
-            <h6 class="mb-10">Akun Anda</h6>
+              <h6 class="mb-10">Akun Anda</h6>
             @endauth
             <ul class="mobile-menu font-heading">
               @guest
-                <li><a wire:navigate class='btn btn-default btn-shadow hover-up' href='{{ route('login') }}'>Masuk</a></li>
+                <li><a wire:navigate class='btn btn-default btn-shadow hover-up' href='{{ route('login') }}'>Masuk</a>
+                </li>
               @endguest
               @auth
-                <li><a wire:navigate class="{{ request()->routeIs('profile') ? 'active' : '' }}"  href="{{ route('profile') }}">Profile</a></li>
+                <li><a wire:navigate class="{{ request()->routeIs('profile') ? 'active' : '' }}"
+                    href="{{ route('profile') }}">Profile</a></li>
                 <li><a wire:navigate href='#'>Lamaran saya</a></li>
-                <li><a wire:navigate class="text-danger" href='{{ route('logout') }}' onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a></li>
+                <li><a wire:navigate class="text-danger" href='{{ route('logout') }}'
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a></li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   {{ csrf_field() }}
                 </form>
@@ -205,7 +214,7 @@
     <div class="container">
       <div class="row">
         <div class="footer-col-1 col-md-3 col-sm-12"><a href='index.html'><img alt="jobBox"
-              src="assets/imgs/template/jobhub-logo.svg"></a>
+              src="{{ asset('assets/imgs/template/jobhub-logo.svg') }}"></a>
           <div class="mt-20 mb-20 font-xs color-text-paragraph-2">
             JobBox is the heart of the design community and the
             best resource to discover and connect with designers and jobs worldwide.
@@ -256,9 +265,9 @@
           <p class="color-text-paragraph-2 font-xs">Download our Apps and get extra 15% Discount on your
             first
             Order&mldr;!</p>
-          <div class="mt-15"><a class="mr-5" href="#"><img src="assets/imgs/template/icons/app-store.png"
-                alt="joxBox"></a><a href="#"><img src="assets/imgs/template/icons/android.png"
-                alt="joxBox"></a>
+          <div class="mt-15"><a class="mr-5" href="#"><img
+                src="{{ asset('assets/imgs/template/icons/app-store.png') }}" alt="joxBox"></a><a
+              href="#"><img src="{{ asset('assets/imgs/template/icons/android.png') }}" alt="joxBox"></a>
           </div>
         </div>
       </div>
