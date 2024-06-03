@@ -19,13 +19,13 @@
 
 <body>
     {{-- Preload --}}
-    {{-- <div id="preloader-active">
-    <div class="preloader d-flex align-items-center justify-content-center">
-      <div class="preloader-inner position-relative">
-        <div class="text-center"><img src="assets/imgs/template/loading.gif" alt="jobBox"></div>
-      </div>
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="text-center"><img src="assets/imgs/template/loading.gif" alt="jobBox"></div>
+            </div>
+        </div>
     </div>
-  </div> --}}
 
     {{-- Modal --}}
     <div class="modal fade" id="ModalApplyJobForm" tabindex="-1" aria-hidden="true">
@@ -94,14 +94,13 @@
                     <nav class="nav-main-menu">
                         <ul class="main-menu">
                             <li>
-                                <a wire:navigate
-                                    class='{{ request()->routeIs('beranda') | request()->routeIs('home') ? 'active' : '' }}'
+                                <a class='{{ request()->routeIs('beranda') | request()->routeIs('home') ? 'active' : '' }}'
                                     href='{{ route('beranda') }}'>
                                     Beranda
                                 </a>
                             </li>
                             <li>
-                                <a wire:navigate class='{{ request()->routeIs('kerja') ? 'active' : '' }}'
+                                <a class='{{ request()->routeIs('kerja') ? 'active' : '' }}'
                                     href='{{ route('kerja') }}'>
                                     Cari Kerja
                                 </a>
@@ -109,7 +108,7 @@
                             @auth
                                 @if (Auth()->user()->role == 'owner')
                                     <li>
-                                        <a wire:navigate class='{{ request()->routeIs('buat-lowongan') ? 'active' : '' }}'
+                                        <a class='{{ request()->routeIs('buat-lowongan') ? 'active' : '' }}'
                                             href="{{ route('buat-lowongan') }}">
                                             Buat Lowongan
                                         </a>
@@ -118,7 +117,7 @@
                                 @endif
                             @endauth
                             <li>
-                                <a wire:navigate class='{{ request()->routeIs('pricing') ? 'active' : '' }}'
+                                <a class='{{ request()->routeIs('pricing') ? 'active' : '' }}'
                                     href='{{ route('pricing') }}'>
                                     Langganan
                                 </a>
@@ -135,10 +134,9 @@
                                 <ul class="main-menu">
                                     <li class="has-children"><a>{{ auth()->user()->name }}</a>
                                         <ul class="sub-menu">
-                                            <li><a wire:navigate
-                                                    class="{{ request()->routeIs('profile') ? 'active' : '' }}"
+                                            <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}"
                                                     href='{{ route('profile') }}'>Profile</a></li>
-                                            <li><a wire:navigate href='index-2.html'>Lamaran saya</a></li>
+                                            <li><a href='index-2.html'>Lamaran saya</a></li>
                                             <li><a class="text-danger" href='{{ route('logout') }}'
                                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                                             </li>
@@ -154,9 +152,8 @@
                     @endauth
                     @guest
                         <div class="block-signin">
-                            <a wire:navigate class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a>
-                            <a wire:navigate class='btn btn-default btn-shadow ml-40 hover-up'
-                                href='{{ route('login') }}'>Masuk</a>
+                            <a class='text-link-bd-btom hover-up' href='{{ route('register') }}'>Daftar</a>
+                            <a class='btn btn-default btn-shadow ml-40 hover-up' href='{{ route('login') }}'>Masuk</a>
                         </div>
                     @endguest
                 </div>
@@ -172,15 +169,15 @@
                         <!-- mobile menu start-->
                         <nav>
                             <ul class="mobile-menu font-heading">
-                                <li><a wire:navigate class='active' href='{{ route('beranda') }}'>Beranda</a></li>
-                                <li><a wire:navigate href='{{ route('kerja') }}'>Cari Kerja</a></li>
+                                <li><a class='active' href='{{ route('beranda') }}'>Beranda</a></li>
+                                <li><a href='{{ route('kerja') }}'>Cari Kerja</a></li>
                                 @auth
                                     @if (Auth()->user()->role == 'owner')
-                                        <li><a wire:navigate href='index.html'>Buat Lowongan</a></li>
+                                        <li><a href='index.html'>Buat Lowongan</a></li>
                                     @else
                                     @endif
                                 @endauth
-                                <li><a wire:navigate href='index.html'>Langganan</a></li>
+                                <li><a href='index.html'>Langganan</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -190,15 +187,14 @@
                         @endauth
                         <ul class="mobile-menu font-heading">
                             @guest
-                                <li><a wire:navigate class='btn btn-default btn-shadow hover-up'
-                                        href='{{ route('login') }}'>Masuk</a>
+                                <li><a class='btn btn-default btn-shadow hover-up' href='{{ route('login') }}'>Masuk</a>
                                 </li>
                             @endguest
                             @auth
-                                <li><a wire:navigate class="{{ request()->routeIs('profile') ? 'active' : '' }}"
+                                <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}"
                                         href="{{ route('profile') }}">Profile</a></li>
-                                <li><a wire:navigate href='#'>Lamaran saya</a></li>
-                                <li><a wire:navigate class="text-danger" href='{{ route('logout') }}'
+                                <li><a href='#'>Lamaran saya</a></li>
+                                <li><a class="text-danger" href='{{ route('logout') }}'
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                                 </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
