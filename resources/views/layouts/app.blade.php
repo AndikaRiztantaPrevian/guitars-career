@@ -113,7 +113,6 @@
                                             Buat Lowongan
                                         </a>
                                     </li>
-                                @else
                                 @endif
                             @endauth
                             <li>
@@ -136,7 +135,7 @@
                                         <ul class="sub-menu">
                                             <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}"
                                                     href='{{ route('profile') }}'>Profile</a></li>
-                                            <li><a href='index-2.html'>Lamaran saya</a></li>
+                                            <li><a href='{{ route('customer.history') }}'>Riwayat Transaksi</a></li>
                                             <li><a class="text-danger" href='{{ route('logout') }}'
                                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                                             </li>
@@ -173,11 +172,10 @@
                                 <li><a href='{{ route('kerja') }}'>Cari Kerja</a></li>
                                 @auth
                                     @if (Auth()->user()->role == 'owner')
-                                        <li><a href='index.html'>Buat Lowongan</a></li>
-                                    @else
+                                        <li><a href='{{ route('buat-lowongan') }}'>Buat Lowongan</a></li>
                                     @endif
                                 @endauth
-                                <li><a href='index.html'>Langganan</a></li>
+                                <li><a href='{{ route('pricing') }}'>Langganan</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -296,7 +294,6 @@
     </footer>
 
     {{-- Script --}}
-    @stack('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -312,6 +309,7 @@
     <script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/counterup.js') }}"></script>
     <script src="{{ asset('assets/js/main8c94.js?v=4.1') }}"></script>
+    @stack('script')
 
     {{-- Livewire Script --}}
     @livewireScripts

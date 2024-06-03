@@ -31,10 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/buat-lowongan', [JobVacancy::class, 'index'])->name('buat-lowongan');
 
     // Midtrans
-    // Route::post('/midtrans/notification', [CustomerController::class, 'notification']);
     Route::post('/transaction/basic', [CustomerController::class, 'storeBasic']);
     Route::post('/transaction/standard', [CustomerController::class, 'storeStandard']);
     Route::post('/transaction/enterprice', [CustomerController::class, 'storeEnterprice']);
+    Route::get('/riwayat-transaksi', [CustomerController::class, 'history'])->name('customer.history');
 
     // Step 2 Registration
     Route::get('/set-account/only/{id}', [SocialiteController::class, 'indexRole'])->name('role-only-index');
