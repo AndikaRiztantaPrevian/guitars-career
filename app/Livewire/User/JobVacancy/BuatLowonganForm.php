@@ -1,15 +1,22 @@
 <?php
 
-namespace App\Livewire\Components;
+namespace App\Livewire\User\JobVacancy;
 
+use App\Livewire\Forms\CreateCareerForm;
+use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 use KodePandai\Indonesia\Models\City;
 use KodePandai\Indonesia\Models\District;
 use KodePandai\Indonesia\Models\Province;
 use KodePandai\Indonesia\Models\Village;
-use Livewire\Component;
 
-class SelectAlamat extends Component
+class BuatLowonganForm extends Component
 {
+
+    use WithFileUploads;
+
+    public CreateCareerForm $form;
+
     public $provinces;
     public $cities = [];
     public $districts = [];
@@ -39,6 +46,7 @@ class SelectAlamat extends Component
         $this->selectedDistrict = null;
         $this->villages = [];
         $this->selectedVillage = null;
+        $this->form->provinceId = $provinceId;
     }
 
     public function updatedSelectedCity($cityId)
@@ -53,6 +61,7 @@ class SelectAlamat extends Component
         $this->selectedDistrict = null;
         $this->villages = [];
         $this->selectedVillage = null;
+        $this->form->cityId = $cityId;
     }
 
     public function updatedSelectedDistrict($districtId)
@@ -66,11 +75,18 @@ class SelectAlamat extends Component
             )->get();
 
         $this->selectedVillage = null;
+        $this->form->districtId = $districtId;
+    }
+
+    public function createLowongan()
+    {
+        $this->form->create();
+        $this->dispatch('career-created', message: 'lowongan berhasil di buat!');
     }
 
     public function render()
     {
-        return view('livewire.components.select-alamat', [
+        return view('livewire.user.job-vacancy.buat-lowongan-form', [
             'provinces' => $this->provinces,
             'cities' => $this->cities,
             'districts' => $this->districts,

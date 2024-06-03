@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -46,5 +47,15 @@ class User extends Authenticatable
     public function customers(): BelongsToMany
     {
         return $this->belongsToMany(Customer::class);
+    }
+
+    /**
+     * Relasi untuk mendapatkan data Career yang di miliki user terkait
+     *
+     * @return HasMany
+     */
+    public function career(): HasMany
+    {
+        return $this->hasMany(Career::class);
     }
 }
