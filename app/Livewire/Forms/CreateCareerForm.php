@@ -44,6 +44,9 @@ class CreateCareerForm extends Form
     #[Validate('required|min:0|numeric')]
     public $salary;
 
+    #[Validate('required')]
+    public $category_company_id;
+
     protected $messages = [
         'companyName.required' => 'Nama perusahaan harus diisi.',
         'image.required' => 'Gambar perusahaan harus diunggah.',
@@ -61,6 +64,7 @@ class CreateCareerForm extends Form
         'salary.required' => 'Gaji harus diisi.',
         'salary.min' => 'Gaji harus bernilai minimal 0.',
         'salary.numeric' => 'Gaji harus berupa angka.',
+        'category_company_id.required' => 'Kategori Perusahaan harus dipilih.',
     ];
 
     public function create()
@@ -81,6 +85,7 @@ class CreateCareerForm extends Form
             'city_code' => $this->cityId,
             'district_code' => $this->districtId,
             'village_code' => $this->villageId,
+            'user_id' => $this->category_company_id,
             'user_id' => auth()->id()
         ]);
 

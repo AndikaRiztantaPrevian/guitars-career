@@ -29,6 +29,24 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label class="font-sm color-text-muted mb-10">Kategori Perusahaan
+                        </label>
+                        <select
+                            class="form-select @error('form.category_company_id') is-invalid @elseif($this->form->category_company_id == null) @else is-valid @enderror"
+                            wire:model.blur="form.category_company_id">
+                            <option value="">Pilih Kategori Perusahaan</option>
+                            @foreach (\App\Helpers\CategoryCompaniesHelper::list() as $item)
+                                <option value="{{ $item->id }}" wire:key="{{ $item->id }}">{{ $item->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('form.category_company_id')
+                            <span class="text-danger" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label class="font-sm mb-10">Alamat</label>
                         <textarea
                             class="form-control @error('form.address') is-invalid @elseif($this->form->address == null) @else is-valid @enderror"
@@ -175,7 +193,7 @@
                             wire:model.blur="form.skill">
                             <option value="">Pilih skill yang di perlukan</option>
                             @foreach (\App\Helpers\SkillsHelper::list() as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}
+                                <option value="{{ $item->id }}" wire.key="{{ $item->id }}">{{ $item->name }}
                                 </option>
                             @endforeach
                         </select>

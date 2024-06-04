@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use KodePandai\Indonesia\Models\City;
 use KodePandai\Indonesia\Models\District;
@@ -16,6 +17,14 @@ class Career extends Model
 
     protected $guarded = ['id'];
 
+    // Accessor untuk salary
+    public function getSalaryAttribute($value)
+    {
+        // Gunakan NumberFormatter untuk format angka dalam bentuk Rupiah
+        $formatter = new \NumberFormatter('id_ID', \NumberFormatter::CURRENCY);
+        return $formatter->formatCurrency($value, 'IDR');
+    }
+
     /**
      * Relasi untuk mengambil kualifikasi skill
      *
@@ -27,11 +36,21 @@ class Career extends Model
     }
 
     /**
+     * Relasi untuk mengambil CategoryCompany yang berelasi dengan career terkait
+     *
+     * @return BelongsTo
+     */
+    public function category_company(): BelongsTo
+    {
+        return $this->belongsTo(CategoryCompany::class, 'category_company_id');
+    }
+
+    /**
      * Relasi untuk mengambil provinsi
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function province()
+    public function province(): BelongsTo
     {
         return $this->belongsTo(Province::class, 'province_code', 'code');
     }
@@ -39,9 +58,9 @@ class Career extends Model
     /**
      * Relasi untuk mengambil kota
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function city()
+    public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, 'city_code', 'code');
     }
@@ -49,9 +68,9 @@ class Career extends Model
     /**
      * Relasi untuk mengambil distrik
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function district()
+    public function district(): BelongsTo
     {
         return $this->belongsTo(District::class, 'district_code', 'code');
     }
@@ -59,9 +78,9 @@ class Career extends Model
     /**
      * Relasi untuk mengambil desa
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function village()
+    public function village(): BelongsTo
     {
         return $this->belongsTo(Village::class, 'village_code', 'code');
     }

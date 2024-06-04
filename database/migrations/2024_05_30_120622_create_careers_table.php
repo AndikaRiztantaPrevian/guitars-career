@@ -31,6 +31,11 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
+            $table->foreignId('category_company_id')
+                ->constrained('category_companies')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->foreign('province_code')
                 ->references('code')
                 ->on(config('indonesia.table_prefix') . 'provinces')
