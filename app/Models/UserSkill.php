@@ -11,8 +11,6 @@ class UserSkill extends Model
 
     protected $guarded = ['id'];
 
-    protected $listeners = ['skillsUpdated' => 'render'];
-
     public function user()
     {
         return $this->belongsTo(User::class);
