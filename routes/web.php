@@ -29,11 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/cari-kerja', [JobsController::class, 'index'])->name('kerja');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::resource('career', CareerController::class);
-
-    // Midtrans
-    Route::post('/transaction/basic', [CustomerController::class, 'storeBasic']);
-    Route::post('/transaction/standard', [CustomerController::class, 'storeStandard']);
-    Route::post('/transaction/enterprice', [CustomerController::class, 'storeEnterprice']);
     Route::get('/riwayat-transaksi', [CustomerController::class, 'history'])->name('customer.history');
 
     // Step 2 Registration

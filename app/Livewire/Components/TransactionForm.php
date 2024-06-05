@@ -3,6 +3,7 @@
 namespace App\Livewire\Components;
 
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -28,7 +29,7 @@ class TransactionForm extends Component
         }
 
         DB::transaction(function () {
-            $user = Auth::user();
+            $user = User::findOrFail('id', Auth::user()->id);
 
             $user->post_limit = $user->post_limit > 0 ? $user->post_limit + $this->postLimitIncrement : $this->postLimitIncrement;
             $user->save();

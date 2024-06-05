@@ -21,4 +21,14 @@ class Skill extends Model
     {
         return $this->belongsToMany(Career::class, 'career_skill')->withTimestamps();
     }
+
+    /**
+     * Relasi antara skill -> userskill -> user
+     *
+     * @return void
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_skills', 'skill_id', 'user_id');
+    }
 }

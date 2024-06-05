@@ -18,12 +18,13 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number')->nullable();
+            $table->string('image')->default('photo-profile/default/user.png');
             $table->text('bio')->nullable();
-            $table->string('country')->nullable();
-            $table->string('city')->nullable();
-            $table->string('state')->nullable();
-            $table->string('code_zip')->nullable();
             $table->text('address')->nullable();
+            $table->char('province_code', 2)->nullable();
+            $table->char('city_code', 4)->nullable();
+            $table->char('district_code', 7)->nullable();
+            $table->char('village_code', 10)->nullable();
             $table->enum('role', ['user', 'owner'])->nullable();
             $table->integer('post_limit')->default(0);
             $table->string('google_id')->nullable();
@@ -31,6 +32,30 @@ return new class extends Migration
             $table->string('google_refresh_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('province_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'provinces')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('city_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'cities')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('district_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'districts')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('village_code')
+                ->references('code')
+                ->on(config('indonesia.table_prefix') . 'villages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

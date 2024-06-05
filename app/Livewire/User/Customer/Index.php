@@ -13,7 +13,7 @@ class Index extends Component
 
     public function render()
     {
-        $data = Customer::where('user_id', Auth::user()->id)->paginate(1);
+        $data = Customer::where('user_id', Auth::user()->id)->paginate(10);
 
         return view('livewire.user.customer.index', ['dataHistory' => $data]);
     }   

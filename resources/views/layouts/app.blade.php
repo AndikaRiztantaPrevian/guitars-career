@@ -74,8 +74,7 @@
                             <button class="btn btn-default hover-up w-100" type="submit" name="login">Apply
                                 Job</button>
                         </div>
-                        <div class="text-muted text-center">Do you need support? <a href='page-contact.html'>Contact
-                                Us</a></div>
+                        <div class="text-muted text-center">Do you need support? <a href='page-contact.html'>Contact Us</a></div>
                     </form>
                 </div>
             </div>
@@ -87,8 +86,7 @@
         <div class="container">
             <div class="main-header">
                 <div class="header-left">
-                    <div class="header-logo"><a class='d-flex' href='index.html'><img alt="jobBox"
-                                src="{{ asset('assets/imgs/template/jobhub-logo.svg') }}"></a></div>
+                    <div class="header-logo"><a class='d-flex' href='index.html'><img alt="jobBox" src="{{ asset('assets/imgs/template/jobhub-logo.svg') }}"></a></div>
                 </div>
                 <div class="header-nav">
                     <nav class="nav-main-menu">
@@ -133,11 +131,11 @@
                                 <ul class="main-menu">
                                     <li class="has-children"><a>{{ auth()->user()->name }}</a>
                                         <ul class="sub-menu">
-                                            <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}"
-                                                    href='{{ route('profile') }}'>Profile</a></li>
-                                            <li><a href='{{ route('customer.history') }}'>Riwayat Transaksi</a></li>
-                                            <li><a class="text-danger" href='{{ route('logout') }}'
-                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                                            <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}" href='{{ route('profile') }}'>Profile</a></li>
+                                            @if(Auth::user()->role == 'owner')
+                                            <li><a class="{{ request()->routeIs('customer.history') ? 'active' : '' }}" href='{{ route('customer.history') }}'>Riwayat Transaksi</a></li>
+                                            @endif
+                                            <li><a class="text-danger" href='{{ route('logout') }}' onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                                             </li>
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                                 style="display: none;">
@@ -185,18 +183,15 @@
                         @endauth
                         <ul class="mobile-menu font-heading">
                             @guest
-                                <li><a class='btn btn-default btn-shadow hover-up' href='{{ route('login') }}'>Masuk</a>
-                                </li>
+                                <li><a class='btn btn-default btn-shadow hover-up' href='{{ route('login') }}'>Masuk</a></li>
                             @endguest
                             @auth
-                                <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}"
-                                        href="{{ route('profile') }}">Profile</a></li>
-                                <li><a href='#'>Lamaran saya</a></li>
-                                <li><a class="text-danger" href='{{ route('logout') }}'
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
-                                </li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
+                                <li><a class="{{ request()->routeIs('profile') ? 'active' : '' }}" href="{{ route('profile') }}">Profile</a></li>
+                                @if(Auth::user()->role == 'user')
+                                    <li><a href=''>Lamaran saya</a></li>
+                                @endif
+                                <li><a class="text-danger" href='{{ route('logout') }}' onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             @endauth
