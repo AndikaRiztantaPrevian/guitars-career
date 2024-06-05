@@ -12,9 +12,9 @@ class CategoryCompaniesHelper
      *
      * @return void
      */
-    public function list()
+    public static function list()
     {
-        CategoryCompany::query()
+        return CategoryCompany::query()
             ->get();
     }
 }

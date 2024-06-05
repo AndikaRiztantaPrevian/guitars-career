@@ -6,7 +6,7 @@ use App\Models\Career;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class CreateCareerForm extends Form
+class CareerCreateForm extends Form
 {
     #[Validate('required')]
     public $companyName;

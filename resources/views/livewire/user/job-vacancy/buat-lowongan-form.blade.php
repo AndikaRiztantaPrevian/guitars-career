@@ -1,7 +1,19 @@
 <div>
-    <h3 class="mt-0 mb-15 color-brand-1">Buat Lowongan Baru</h3>
+    <div class="box-heading d-xl-flex d-md-flex justify-content-between">
+        <div class="box-title">
+            <h3 class="mb-35">Buat Lowongan</h3>
+        </div>
+        <div class="box-breadcrumb">
+            <div class="breadcrumbs">
+                <ul>
+                    <li> <a class="icon-home" href="{{ route('career.index') }}" wire:navigate>Lowongan Saya</a></li>
+                    <li><span>Buat Lowongan</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <form wire:submit="createLowongan">
-        <div class="row form-contact">
+        <div class="row">
             <div class="col-lg-6 col-md-12">
                 <div class="box-skills">
                     <h5 class="mt-0 color-brand-1">Detail Perusahaan</h5>
@@ -193,7 +205,8 @@
                             wire:model.blur="form.skill">
                             <option value="">Pilih skill yang di perlukan</option>
                             @foreach (\App\Helpers\SkillsHelper::list() as $item)
-                                <option value="{{ $item->id }}" wire.key="{{ $item->id }}">{{ $item->name }}
+                                <option value="{{ $item->id }}" wire.key="{{ $item->id }}">
+                                    {{ $item->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -219,7 +232,7 @@
             </div>
         </div>
         <div class="box-button mt-15">
-            <button class="btn btn-apply-big font-md">Simpan semua
+            <button class="btn btn-default btn-brand icon-tick">Simpan semua
                 perubahan</button>
         </div>
     </form>

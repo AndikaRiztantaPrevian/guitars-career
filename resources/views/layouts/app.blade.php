@@ -19,13 +19,13 @@
 
 <body>
     {{-- Preload --}}
-    <div id="preloader-active">
+    {{-- <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center"><img src="assets/imgs/template/loading.gif" alt="jobBox"></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Modal --}}
     <div class="modal fade" id="ModalApplyJobForm" tabindex="-1" aria-hidden="true">
@@ -108,8 +108,8 @@
                             @auth
                                 @if (Auth()->user()->role == 'owner')
                                     <li>
-                                        <a class='{{ request()->routeIs('buat-lowongan') ? 'active' : '' }}'
-                                            href="{{ route('buat-lowongan') }}">
+                                        <a class='{{ request()->routeIs('career.index') ? 'active' : '' }}'
+                                            href="{{ route('career.index') }}">
                                             Buat Lowongan
                                         </a>
                                     </li>
@@ -172,7 +172,7 @@
                                 <li><a href='{{ route('kerja') }}'>Cari Kerja</a></li>
                                 @auth
                                     @if (Auth()->user()->role == 'owner')
-                                        <li><a href='{{ route('buat-lowongan') }}'>Buat Lowongan</a></li>
+                                        <li><a href='{{ route('career.index') }}'>Buat Lowongan</a></li>
                                     @endif
                                 @endauth
                                 <li><a href='{{ route('pricing') }}'>Langganan</a></li>

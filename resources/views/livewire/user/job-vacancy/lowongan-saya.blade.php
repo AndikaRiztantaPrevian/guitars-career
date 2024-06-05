@@ -7,7 +7,8 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="card-grid-2-image-left">
-                                <div class="image-box" style="width: 100px; object-fit: cover"><img src="{{ Storage::url($career->image) }}" alt="jobBox">
+                                <div class="image-box" style="width: 100px; object-fit: cover"><img
+                                        src="{{ Storage::url($career->image) }}" alt="jobBox">
                                 </div>
                                 <div class="right-info"><a class="name-job"
                                         href="#">{{ $career->job_name }}</a><span
@@ -60,7 +61,8 @@
             {{-- {{ $careers->links('pagination::tailwind') }} --}}
             {{-- Pagination --}}
         @empty
-            <h1>LU GAPUNYA LOKER</h1>
+            <h1>LU GAPUNYA LOKER <a class="text-primary" href="{{ route('career.create') }}" wire:navigate>BIKIN LOKER
+                    SINI</a></h1>
         @endforelse
     </div>
     <div class="paginations">

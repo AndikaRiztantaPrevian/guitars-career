@@ -2,7 +2,7 @@
 
 namespace App\Livewire\User\JobVacancy;
 
-use App\Livewire\Forms\CreateCareerForm;
+use App\Livewire\Forms\CareerCreateForm;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 use KodePandai\Indonesia\Models\City;
@@ -15,7 +15,7 @@ class BuatLowonganForm extends Component
 
     use WithFileUploads;
 
-    public CreateCareerForm $form;
+    public CareerCreateForm $form;
 
     public $provinces;
     public $cities = [];
