@@ -2,5 +2,6 @@
 
 @section('content')
     {{-- Livewire Jobs Components --}}
-    @livewire('user.jobs.index')
+    <livewire:user.jobs.index />
+    {{-- Livewire Jobs Components --}}
 @endsection
